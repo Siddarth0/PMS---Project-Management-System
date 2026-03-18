@@ -5,11 +5,18 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "node server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "author": "Siddartha Kunwar",
   "license": "ISC",
   "devDependencies": {
     "prettier": "3.8.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
   }
 }
