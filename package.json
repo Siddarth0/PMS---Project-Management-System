@@ -1,0 +1,15 @@
+{
+  "name": "projectmanager",
+  "version": "1.0.0",
+  "description": "a project management application for beginners",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "author": "Siddartha Kunwar",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "3.8.1"
+  }
+}
