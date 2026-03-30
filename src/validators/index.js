@@ -1,5 +1,5 @@
 import { body } from "express-validator";
-import { AvailableUserRole } from "../utils/constants.js";
+import { AvailableTaskStatus, AvailableUserRole } from "../utils/constants.js";
 
 const userRegisterValidator = () => {
   return [
@@ -77,6 +77,36 @@ const addMembersToProjectValidator = () => {
   ];
 };
 
+const createTaskValidator = () => [
+  body("title").trim().notEmpty().withMessage("Task title is required"),
+  body("status")
+    .optional()
+    .isIn(AvailableTaskStatus)
+    .withMessage("Invalid task status"),
+  body("assignedTo").optional().isMongoId().withMessage("Invalid assigned user id"),
+];
+
+const updateTaskValidator = () => [
+  body("title").optional().trim().notEmpty().withMessage("Title cannot be empty"),
+  body("status")
+    .optional()
+    .isIn(AvailableTaskStatus)
+    .withMessage("Invalid task status"),
+  body("assignedTo").optional().isMongoId().withMessage("Invalid assigned user id"),
+];
+
+const createSubTaskValidator = () => [
+  body("title").trim().notEmpty().withMessage("Sub task title is required"),
+];
+
+const updateSubTaskValidator = () => [
+  body("title").optional().trim().notEmpty().withMessage("Title cannot be empty"),
+  body("isCompleted")
+    .optional()
+    .isBoolean()
+    .withMessage("isCompleted must be boolean"),
+];
+
 export {
   userRegisterValidator,
   userLoginValidator,
@@ -85,4 +115,8 @@ export {
   userResetForgotPasswordValidator,
   createProjectValidator,
   addMembersToProjectValidator,
+  createTaskValidator,
+  updateTaskValidator,
+  createSubTaskValidator,
+  updateSubTaskValidator,
 };
